@@ -34,32 +34,23 @@ class TennisGame2:
         if max(self.p1_points, self.p2_points) >= 4:
             return self._get_advantage_or_win_score()
 
+        p1_res = self.SCORE_MAPPING.get(self.p1_points, "Invalid")   
+        p2_res = self.SCORE_MAPPING.get(self.p2_points, "Invalid")   
+        result = p1_res + "-" + p2_res
+
         if self.p1_points == self.p2_points and self.p1_points < 3:
-            result = self.SCORE_MAPPING.get(self.p1_points, "Invalid")   
+            result = p1_res
             result += "-All"
         if self.p1_points == self.p2_points and self.p1_points > 2:
             result = "Deuce"
 
-        p1_res = ""
-        p2_res = ""
         if self.p1_points > 0 and self.p2_points == 0:
-            p1_res = self.SCORE_MAPPING.get(self.p1_points, "Invalid")   
             p2_res = "Love"
             result = p1_res + "-" + p2_res
         if self.p2_points > 0 and self.p1_points == 0:
-            p2_res = self.SCORE_MAPPING.get(self.p2_points, "Invalid")   
             p1_res = "Love"
             result = p1_res + "-" + p2_res
 
-        if self.p1_points > self.p2_points and self.p1_points < 4:
-            p1_res = self.SCORE_MAPPING.get(self.p1_points, "Invalid")   
-            p2_res = self.SCORE_MAPPING.get(self.p2_points, "Invalid")   
-            result = p1_res + "-" + p2_res
-        if self.p2_points > self.p1_points and self.p2_points < 4:
-            p2_res = self.SCORE_MAPPING.get(self.p2_points, "Invalid")   
-            p1_res = self.SCORE_MAPPING.get(self.p1_points, "Invalid")
-            result = p1_res + "-" + p2_res
-            
         return result
 
     def set_p1_score(self, number):
