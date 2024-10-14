@@ -51,11 +51,15 @@ class TennisGame2:
         return f"{p1_res}-{p2_res}"
 
     def set_p1_score(self, number):
-        for i in range(number):
+        if number < 0:
+            raise ValueError("Score cannot be negative.")
+        for _ in range(number):
             self.p1_score()
 
     def set_p2_score(self, number):
-        for i in range(number):
+        if number < 0:
+           raise ValueError("Score cannot be negative.")
+        for _ in range(number):
             self.p2_score()
 
     def p1_score(self):
