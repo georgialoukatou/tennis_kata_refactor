@@ -1,4 +1,6 @@
 class TennisGame2:
+    SCORE_MAPPING = {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty"}
+
     def __init__(self, player1_name, player2_name):
         self.player1_name = player1_name
         self.player2_name = player2_name
@@ -16,12 +18,7 @@ class TennisGame2:
     def score(self):
         result = ""
         if self.p1points == self.p2points and self.p1points < 3:
-            if self.p1points == 0:
-                result = "Love"
-            if self.p1points == 1:
-                result = "Fifteen"
-            if self.p1points == 2:
-                result = "Thirty"
+            result = self.SCORE_MAPPING.get(self.p1points, "Invalid")   
             result += "-All"
         if self.p1points == self.p2points and self.p1points > 2:
             result = "Deuce"
@@ -29,45 +26,21 @@ class TennisGame2:
         p1res = ""
         p2res = ""
         if self.p1points > 0 and self.p2points == 0:
-            if self.p1points == 1:
-                p1res = "Fifteen"
-            if self.p1points == 2:
-                p1res = "Thirty"
-            if self.p1points == 3:
-                p1res = "Forty"
-
+            p1res = self.SCORE_MAPPING.get(self.p1points, "Invalid")   
             p2res = "Love"
             result = p1res + "-" + p2res
         if self.p2points > 0 and self.p1points == 0:
-            if self.p2points == 1:
-                p2res = "Fifteen"
-            if self.p2points == 2:
-                p2res = "Thirty"
-            if self.p2points == 3:
-                p2res = "Forty"
-
+            p2res = self.SCORE_MAPPING.get(self.p2points, "Invalid")   
             p1res = "Love"
             result = p1res + "-" + p2res
 
         if self.p1points > self.p2points and self.p1points < 4:
-            if self.p1points == 2:
-                p1res = "Thirty"
-            if self.p1points == 3:
-                p1res = "Forty"
-            if self.p2points == 1:
-                p2res = "Fifteen"
-            if self.p2points == 2:
-                p2res = "Thirty"
+            p1res = self.SCORE_MAPPING.get(self.p1points, "Invalid")   
+            p2res = self.SCORE_MAPPING.get(self.p2points, "Invalid")   
             result = p1res + "-" + p2res
         if self.p2points > self.p1points and self.p2points < 4:
-            if self.p2points == 2:
-                p2res = "Thirty"
-            if self.p2points == 3:
-                p2res = "Forty"
-            if self.p1points == 1:
-                p1res = "Fifteen"
-            if self.p1points == 2:
-                p1res = "Thirty"
+            p2res = self.SCORE_MAPPING.get(self.p2points, "Invalid")   
+            p1res = self.SCORE_MAPPING.get(self.p1points, "Invalid")
             result = p1res + "-" + p2res
 
         if self.p1points > self.p2points and self.p2points >= 3:
