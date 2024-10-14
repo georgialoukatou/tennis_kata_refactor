@@ -43,14 +43,7 @@ class TennisGame2:
             result += "-All"
         if self.p1_points == self.p2_points and self.p1_points > 2:
             result = "Deuce"
-
-        if self.p1_points > 0 and self.p2_points == 0:
-            p2_res = "Love"
-            result = p1_res + "-" + p2_res
-        if self.p2_points > 0 and self.p1_points == 0:
-            p1_res = "Love"
-            result = p1_res + "-" + p2_res
-
+            
         return result
 
     def set_p1_score(self, number):
