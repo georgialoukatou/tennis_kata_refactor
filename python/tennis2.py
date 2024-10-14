@@ -43,24 +43,20 @@ class TennisGame2:
             p1res = self.SCORE_MAPPING.get(self.p1points, "Invalid")
             result = p1res + "-" + p2res
 
+
+
         if self.p1points > self.p2points and self.p2points >= 3:
             result = "Advantage player1"
 
         if self.p2points > self.p1points and self.p1points >= 3:
             result = "Advantage player2"
 
-        if (
-            self.p1points >= 4
-            and self.p2points >= 0
-            and (self.p1points - self.p2points) >= 2
-        ):
+        score_diff = self.p1points - self.p2points
+        if self.p1points >= 4 and score_diff >= 2:
             result = "Win for player1"
-        if (
-            self.p2points >= 4
-            and self.p1points >= 0
-            and (self.p2points - self.p1points) >= 2
-        ):
+        if self.p2points >= 4 and score_diff <= -2:
             result = "Win for player2"
+            
         return result
 
     def set_p1_score(self, number):
