@@ -37,9 +37,12 @@ class TennisGame2:
         if max(self.p1_points, self.p2_points) >= 4:
             return self._get_advantage_or_win_score()
 
-        p1_res = self.SCORE_MAPPING.get(self.p1_points, "Invalid")   
-        p2_res = self.SCORE_MAPPING.get(self.p2_points, "Invalid")   
-        
+        return self._get_regular_score()
+
+    def _get_regular_score(self):
+        p1_res = self.SCORE_MAPPING.get(self.p1_points, "Invalid")
+        p2_res = self.SCORE_MAPPING.get(self.p2_points, "Invalid")
+
         if self._calculate_score_difference()==0:
             if self.p1_points == 3:
                 return "Deuce"
