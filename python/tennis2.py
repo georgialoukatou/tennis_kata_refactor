@@ -6,10 +6,12 @@ class TennisGame2:
         self.p2points = 0
 
     def won_point(self, player_name):
-        if player_name == "player1":
+        if player_name == self.player1_name:
             self.p1_score()
-        else:
+        elif player_name == self.player2_name:
             self.p2_score()
+        else:
+            raise ValueError("Invalid player name")
 
     def score(self):
         result = ""
