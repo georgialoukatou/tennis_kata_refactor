@@ -15,9 +15,12 @@ class TennisGame2:
         else:
             raise ValueError("Invalid player name")
 
+    def _calculate_score_difference(self):
+        score_diff = self.p1_points - self.p2_points
+        return score_diff
 
     def _get_advantage_or_win_score(self):
-        score_diff = self.p1_points - self.p2_points
+        score_diff = self._calculate_score_difference()
         if score_diff >= 2:
             return "Win for player1"
         if score_diff <= -2:
@@ -36,15 +39,13 @@ class TennisGame2:
 
         p1_res = self.SCORE_MAPPING.get(self.p1_points, "Invalid")   
         p2_res = self.SCORE_MAPPING.get(self.p2_points, "Invalid")   
-        result = p1_res + "-" + p2_res
-
-        if self.p1_points == self.p2_points and self.p1_points < 3:
-            result = p1_res
-            result += "-All"
-        if self.p1_points == self.p2_points and self.p1_points > 2:
-            result = "Deuce"
-            
-        return result
+        
+        if self._calculate_score_difference()==0:
+            if self.p1_points == 3:
+                return "Deuce"
+            return f"{p1_res}-All"
+        
+        return f"{p1_res}-{p2_res}"
 
     def set_p1_score(self, number):
         for i in range(number):
